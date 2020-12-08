@@ -7,37 +7,32 @@ spicy_foods = [
 ]
 
 def print_spicy_foods(spicy_foods)
-  spicy_foods.map do |item|
-    puts "#{item[:name]} (#{item[:cuisine]}) | Heat Level: #{item[:heat_level]}"
-  end
+  spicy_foods.each do |item|
+    puts "#{item[:name]} (#{item[:cuisine]}) | Heat Level: #{"🌶" * item[:heat_level]}"
+    end 
 end
 
 def get_names(spicy_foods)
-  array = []
     spicy_foods.map do |item|
-      array << item[:name]
+      item[:name]
     end
-    array
 end
 
 def spiciest_foods(spicy_foods)  
-  spicy_array = []
-  spicy_foods.collect do |hot_food| 
+  spicy_foods.select do |hot_food| 
     if hot_food[:heat_level] > 5
-      spicy_array << hot_food
+      hot_food
     end
   end
-spicy_array
 end
 
 def get_spicy_food_by_cuisine(spicy_foods, cuisine)
   spicy_specific = {}
-  spicy_foods.each do |menu|
+  spicy_foods.select do |menu|
     if cuisine == menu[:cuisine]
-      spicy_specific = menu
+        menu
     end
   end
-spicy_specific
 end
 
 # BONUS Deliverables
@@ -47,16 +42,11 @@ def print_spiciest_foods(spicy_foods)
 end
 
 def average_heat_level(spicy_foods)
-  count = 0
-  average_spice = 0
-  spicy_foods.map do |item|
-    average_spice += item[:heat_level]
-    count += 1
-  end
-  average_spice /= count
+  sum = 0
+  spicy_foods.sum {|num| sum += num[:heat_level]}
+  num / spicy_foods.length
 end
 
 # Use this to test your methods
 # run "ruby run.rb" and try calling the methods from the console
-
 "pls"

@@ -42,9 +42,8 @@ def print_spiciest_foods(spicy_foods)
 end
 
 def average_heat_level(spicy_foods)
-  sum = 0
-  spicy_foods.sum {|num| sum += num[:heat_level]}
-  num / spicy_foods.length
+  x = spicy_foods.collect {|num| num[:heat_level]}
+  x.sum / x.length
 end
 
 # Use this to test your methods
